@@ -1,0 +1,498 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'imagenes/favicon.ico' %}">
+    <title>Prevista del Reporte</title>
+    <style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', 'Arial', sans-serif;
+}
+
+header{
+    display: block;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 20px;
+    color: #1a235f;
+}
+
+header .titulo{
+    display: block;
+    margin-top: 10px;
+}
+
+header h1{
+    margin: 10px 5px;
+}
+
+.lista_asistencias{
+    margin-top: 50px;
+    display: block;
+    width: 100%;
+}
+
+.lista_asistencias table{
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    margin: 0 auto;
+}
+
+.lista_asistencias table .nombre{
+    text-align: left;
+}
+th, td {
+    text-align: center;
+    padding-top: 5px;
+    border: 1px solid black;
+}
+th {
+    color: #fff;
+    background-color: #1a235f;
+}
+.lista_asistencias .numero{
+    width: 75px;
+}
+.lista_asistencias .col-nombre,
+.lista_asistencias .nombre{
+    width: 420px;
+}
+.encabezado td{
+    border: 1px solid #fff;
+}
+.encabezado .valor{
+    text-align: left;
+}
+.encabezado .fecha{
+    width: 100px;
+}
+.encabezado .fecha-valor{
+    text-align: left;
+}
+.lista_asistencias table thead tr th,
+.lista_asistencias table tbody tr td{
+    font-size: 14px;
+}
+
+.lista_asistencias .normal{
+    background-color: bisque;
+}
+.lista_asistencias .sumatoria{
+    color: #fff;
+    background-color: red;
+}
+.lista_asistencias .sumatoria td{
+    font-weight: bold;
+    font-size: 16px;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <img class="logo" src="sitioWeb\static\imagenes\baner.jpg">
+        <br>
+        <h1>REPORTE DE ASISTENCIAS</h1>
+        <h1>CUADRO DE RESUMEN</h1>
+        <table class="encabezado">
+            <tbody>
+                <tr>
+                    <td class="fecha">FECHA: </td>
+                    <td class="fecha-valor">{{ fecha }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </header>
+    <div class="lista_asistencias">
+        <table>
+            <thead>
+                <tr>
+                    <th>Grado</th>
+                    <th>Sección</th>
+                    <th class="numero">N°</th>
+                    <th>Registros</th>
+                    <th>Asistencias</th>
+                    <th>Tardanzas</th>
+                    <th>Faltas/Sin Autocontrol</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--PRIMERO-->
+                <tr class="normal">
+                    <td>PRIMERO</td>
+                    <td>A</td>
+                    <td>{{alumnos.0}}</td>
+                    <td>{{registros.0}}</td>
+                    <td>{{puntuales.0}}</td>
+                    <td>{{tarde.0}}</td>
+                    <td>{{faltas.0}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>PRIMERO</td>
+                    <td>B</td>
+                    <td>{{alumnos.1}}</td>
+                    <td>{{registros.1}}</td>
+                    <td>{{puntuales.1}}</td>
+                    <td>{{tarde.1}}</td>
+                    <td>{{faltas.1}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>PRIMERO</td>
+                    <td>C</td>
+                    <td>{{alumnos.2}}</td>
+                    <td>{{registros.2}}</td>
+                    <td>{{puntuales.2}}</td>
+                    <td>{{tarde.2}}</td>
+                    <td>{{faltas.2}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>PRIMERO</td>
+                    <td>D</td>
+                    <td>{{alumnos.3}}</td>
+                    <td>{{registros.3}}</td>
+                    <td>{{puntuales.3}}</td>
+                    <td>{{tarde.3}}</td>
+                    <td>{{faltas.3}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>PRIMERO</td>
+                    <td>E</td>
+                    <td>{{alumnos.4}}</td>
+                    <td>{{registros.4}}</td>
+                    <td>{{puntuales.4}}</td>
+                    <td>{{tarde.4}}</td>
+                    <td>{{faltas.4}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>PRIMERO</td>
+                    <td>F</td>
+                    <td>{{alumnos.5}}</td>
+                    <td>{{registros.5}}</td>
+                    <td>{{puntuales.5}}</td>
+                    <td>{{tarde.5}}</td>
+                    <td>{{faltas.5}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>PRIMERO</td>
+                    <td>G</td>
+                    <td>{{alumnos.6}}</td>
+                    <td>{{registros.6}}</td>
+                    <td>{{puntuales.6}}</td>
+                    <td>{{tarde.6}}</td>
+                    <td>{{faltas.6}}</td>
+                </tr>
+                <tr class="sumatoria">
+                    <td colspan="2"> TOTAL PRIMERO</td>
+                    <td>{{suma_alumnos.0}}</td>
+                    <td>{{suma_registros.0}}</td>
+                    <td>{{suma_puntuales.0}}</td>
+                    <td>{{suma_tardes.0}}</td>
+                    <td>{{suma_faltas.0}}</td>
+                </tr>
+                <!--SEGUNDO-->
+                <tr class="normal">
+                    <td>SEGUNDO</td>
+                    <td>A</td>
+                    <td>{{alumnos.7}}</td>
+                    <td>{{registros.7}}</td>
+                    <td>{{puntuales.7}}</td>
+                    <td>{{tarde.7}}</td>
+                    <td>{{faltas.7}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>SEGUNDO</td>
+                    <td>B</td>
+                    <td>{{alumnos.8}}</td>
+                    <td>{{registros.8}}</td>
+                    <td>{{puntuales.8}}</td>
+                    <td>{{tarde.8}}</td>
+                    <td>{{faltas.8}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>SEGUNDO</td>
+                    <td>C</td>
+                    <td>{{alumnos.9}}</td>
+                    <td>{{registros.9}}</td>
+                    <td>{{puntuales.9}}</td>
+                    <td>{{tarde.9}}</td>
+                    <td>{{faltas.9}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>SEGUNDO</td>
+                    <td>D</td>
+                    <td>{{alumnos.10}}</td>
+                    <td>{{registros.10}}</td>
+                    <td>{{puntuales.10}}</td>
+                    <td>{{tarde.10}}</td>
+                    <td>{{faltas.10}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>SEGUNDO</td>
+                    <td>E</td>
+                    <td>{{alumnos.11}}</td>
+                    <td>{{registros.11}}</td>
+                    <td>{{puntuales.11}}</td>
+                    <td>{{tarde.11}}</td>
+                    <td>{{faltas.11}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>SEGUNDO</td>
+                    <td>F</td>
+                    <td>{{alumnos.12}}</td>
+                    <td>{{registros.12}}</td>
+                    <td>{{puntuales.12}}</td>
+                    <td>{{tarde.12}}</td>
+                    <td>{{faltas.12}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>SEGUNDO</td>
+                    <td>G</td>
+                    <td>{{alumnos.13}}</td>
+                    <td>{{registros.13}}</td>
+                    <td>{{puntuales.13}}</td>
+                    <td>{{tarde.13}}</td>
+                    <td>{{faltas.13}}</td>
+                </tr>
+                <tr class="sumatoria">
+                    <td colspan="2"> TOTAL SEGUNDO</td>
+                    <td>{{suma_alumnos.1}}</td>
+                    <td>{{suma_registros.1}}</td>
+                    <td>{{suma_puntuales.1}}</td>
+                    <td>{{suma_tardes.1}}</td>
+                    <td>{{suma_faltas.1}}</td>
+                </tr>
+                <!--TERCERO-->
+                <tr class="normal">
+                    <td>TERCERO</td>
+                    <td>A</td>
+                    <td>{{alumnos.14}}</td>
+                    <td>{{registros.14}}</td>
+                    <td>{{puntuales.14}}</td>
+                    <td>{{tarde.14}}</td>
+                    <td>{{faltas.14}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>TERCERO</td>
+                    <td>B</td>
+                    <td>{{alumnos.15}}</td>
+                    <td>{{registros.15}}</td>
+                    <td>{{puntuales.15}}</td>
+                    <td>{{tarde.15}}</td>
+                    <td>{{faltas.15}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>TERCERO</td>
+                    <td>C</td>
+                    <td>{{alumnos.16}}</td>
+                    <td>{{registros.16}}</td>
+                    <td>{{puntuales.16}}</td>
+                    <td>{{tarde.16}}</td>
+                    <td>{{faltas.16}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>TERCERO</td>
+                    <td>D</td>
+                    <td>{{alumnos.17}}</td>
+                    <td>{{registros.17}}</td>
+                    <td>{{puntuales.17}}</td>
+                    <td>{{tarde.17}}</td>
+                    <td>{{faltas.17}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>TERCERO</td>
+                    <td>E</td>
+                    <td>{{alumnos.18}}</td>
+                    <td>{{registros.18}}</td>
+                    <td>{{puntuales.18}}</td>
+                    <td>{{tarde.18}}</td>
+                    <td>{{faltas.18}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>TERCERO</td>
+                    <td>F</td>
+                    <td>{{alumnos.19}}</td>
+                    <td>{{registros.19}}</td>
+                    <td>{{puntuales.19}}</td>
+                    <td>{{tarde.19}}</td>
+                    <td>{{faltas.19}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>TERCERO</td>
+                    <td>G</td>
+                    <td>{{alumnos.20}}</td>
+                    <td>{{registros.20}}</td>
+                    <td>{{puntuales.20}}</td>
+                    <td>{{tarde.20}}</td>
+                    <td>{{faltas.20}}</td>
+                </tr>
+                <tr class="sumatoria">
+                    <td colspan="2"> TOTAL TERCERO</td>
+                    <td>{{suma_alumnos.2}}</td>
+                    <td>{{suma_registros.2}}</td>
+                    <td>{{suma_puntuales.2}}</td>
+                    <td>{{suma_tardes.2}}</td>
+                    <td>{{suma_faltas.2}}</td>
+                </tr>
+                <!--CUARTO-->
+                <tr class="normal">
+                    <td>CUARTO</td>
+                    <td>A</td>
+                    <td>{{alumnos.21}}</td>
+                    <td>{{registros.21}}</td>
+                    <td>{{puntuales.21}}</td>
+                    <td>{{tarde.21}}</td>
+                    <td>{{faltas.21}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>CUARTO</td>
+                    <td>B</td>
+                    <td>{{alumnos.22}}</td>
+                    <td>{{registros.22}}</td>
+                    <td>{{puntuales.22}}</td>
+                    <td>{{tarde.22}}</td>
+                    <td>{{faltas.22}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>CUARTO</td>
+                    <td>C</td>
+                    <td>{{alumnos.23}}</td>
+                    <td>{{registros.23}}</td>
+                    <td>{{puntuales.23}}</td>
+                    <td>{{tarde.23}}</td>
+                    <td>{{faltas.23}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>CUARTO</td>
+                    <td>D</td>
+                    <td>{{alumnos.24}}</td>
+                    <td>{{registros.24}}</td>
+                    <td>{{puntuales.24}}</td>
+                    <td>{{tarde.24}}</td>
+                    <td>{{faltas.24}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>CUARTO</td>
+                    <td>E</td>
+                    <td>{{alumnos.25}}</td>
+                    <td>{{registros.25}}</td>
+                    <td>{{puntuales.25}}</td>
+                    <td>{{tarde.25}}</td>
+                    <td>{{faltas.25}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>CUARTO</td>
+                    <td>F</td>
+                    <td>{{alumnos.26}}</td>
+                    <td>{{registros.26}}</td>
+                    <td>{{puntuales.26}}</td>
+                    <td>{{tarde.26}}</td>
+                    <td>{{faltas.26}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>CUARTO</td>
+                    <td>G</td>
+                    <td>{{alumnos.27}}</td>
+                    <td>{{registros.27}}</td>
+                    <td>{{puntuales.27}}</td>
+                    <td>{{tarde.27}}</td>
+                    <td>{{faltas.27}}</td>
+                </tr>
+                <tr class="sumatoria">
+                    <td colspan="2"> TOTAL CUARTO</td>
+                    <td>{{suma_alumnos.3}}</td>
+                    <td>{{suma_registros.3}}</td>
+                    <td>{{suma_puntuales.3}}</td>
+                    <td>{{suma_tardes.3}}</td>
+                    <td>{{suma_faltas.3}}</td>
+                </tr>
+                <!--QUINTO-->
+                <tr class="normal">
+                    <td>QUINTO</td>
+                    <td>A</td>
+                    <td>{{alumnos.28}}</td>
+                    <td>{{registros.28}}</td>
+                    <td>{{puntuales.28}}</td>
+                    <td>{{tarde.28}}</td>
+                    <td>{{faltas.28}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>QUINTO</td>
+                    <td>B</td>
+                    <td>{{alumnos.29}}</td>
+                    <td>{{registros.29}}</td>
+                    <td>{{puntuales.29}}</td>
+                    <td>{{tarde.29}}</td>
+                    <td>{{faltas.29}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>QUINTO</td>
+                    <td>C</td>
+                    <td>{{alumnos.30}}</td>
+                    <td>{{registros.30}}</td>
+                    <td>{{puntuales.30}}</td>
+                    <td>{{tarde.30}}</td>
+                    <td>{{faltas.30}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>QUINTO</td>
+                    <td>D</td>
+                    <td>{{alumnos.31}}</td>
+                    <td>{{registros.31}}</td>
+                    <td>{{puntuales.31}}</td>
+                    <td>{{tarde.31}}</td>
+                    <td>{{faltas.31}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>QUINTO</td>
+                    <td>E</td>
+                    <td>{{alumnos.32}}</td>
+                    <td>{{registros.32}}</td>
+                    <td>{{puntuales.32}}</td>
+                    <td>{{tarde.32}}</td>
+                    <td>{{faltas.32}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>QUINTO</td>
+                    <td>F</td>
+                    <td>{{alumnos.33}}</td>
+                    <td>{{registros.33}}</td>
+                    <td>{{puntuales.33}}</td>
+                    <td>{{tarde.33}}</td>
+                    <td>{{faltas.33}}</td>
+                </tr>
+                <tr class="normal">
+                    <td>QUINTO</td>
+                    <td>G</td>
+                    <td>{{alumnos.34}}</td>
+                    <td>{{registros.34}}</td>
+                    <td>{{puntuales.34}}</td>
+                    <td>{{tarde.34}}</td>
+                    <td>{{faltas.34}}</td>
+                </tr>
+                <tr class="sumatoria">
+                    <td colspan="2"> TOTAL QUINTO</td>
+                    <td>{{suma_alumnos.4}}</td>
+                    <td>{{suma_registros.4}}</td>
+                    <td>{{suma_puntuales.4}}</td>
+                    <td>{{suma_tardes.4}}</td>
+                    <td>{{suma_faltas.4}}</td>
+                </tr>
+                <!--SUMATORIA FINAL-->
+                <tr class="sumatoria">
+                    <td colspan="2"> TOTAL ALUMNOS</td>
+                    <td>{{sumatoria_total.0}}</td>
+                    <td>{{sumatoria_total.1}}</td>
+                    <td>{{sumatoria_total.2}}</td>
+                    <td>{{sumatoria_total.4}}</td>
+                    <td>{{sumatoria_total.3}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

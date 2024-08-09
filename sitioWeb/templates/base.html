@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es-pe">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'imagenes/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/estilo_sitio.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estilo_nav.css' %}">
+    <title>{% block titulo %}{% endblock titulo %}</title>
+</head>
+<body>
+    <header class="header">
+        <img src="{% static 'imagenes/logo_colegio.jpg' %}">
+        <a href=" /" class="logo">José <span>María</span> Arguedas</a>
+        <nav class="navbar">
+            <a href=" /">Alumnos</a>
+            <a href="/asistencias/">Asistencias</a>
+            <a href="/reportes/">Reportes</a>
+            {% if request.user.is_authenticated %}
+                <a href="/logout/" class="btn"><button>Salir</button></a>
+            {% else %}
+                <a href="/inicio_sesion/" class="btn"><button>Ingresar</button></a>
+            {% endif %}
+        </nav>
+        <a onclick="openNav()" href="#" class="menu"><button>Menu</button></a>
+
+        <div class="overlay" id="mobile-menu">
+            <a onclick="closeNav()" href="#" class="close">&times;</a>
+            <div class="overlay-content">
+                <a href=" /">Alumnos</a>
+                <a href="/asistencias/">Asistencias</a>
+                <a href="/reportes/">Reportes</a>
+                {% if request.user.is_authenticated %}
+                    <a href="/logout/" class="btn"><button>Salir</button></a>
+                {% else %}
+                    <a href="/inicio_sesion/" class="btn"><button>Ingresar</button></a>
+                {% endif %}
+            </div>
+        </div>
+
+        <script type="text/javascript" src="{% static 'js/nav.js' %}"></script>
+    </header>
+    <div class="espacio">
+        
+    </div>
+    <div class="contenido">
+        {% if request.user.is_authenticated %}
+            {% block contenido %}
+            <div class="busqueda">
+                <form action="{% block enlace_form %}{% endblock enlace_form %}" method="post">
+                    {% csrf_token %}
+                    <h1>{% block titulo_pagina %}{% endblock titulo_pagina %}</h1>
+                    
+                    <div class="opciones">
+                        <label>FECHA BUSCAR: </label>
+                        <input type="text" name="fecha" id="fecha" required>
+                        <label>GRADO: </label>
+                        <select name="grado" id="">
+                            <option value="PRIMERO">PRIMERO</option>
+                            <option value="SEGUNDO">SEGUNDO</option>
+                            <option value="TERCERO">TERCERO</option>
+                            <option value="CUARTO">CUARTO</option>
+                            <option value="QUINTO">QUINTO</option>
+                        </select>
+                        <label>SECCIÓN: </label>
+                        <select name="seccion" id="">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="G">G</option>
+                        </select>
+                    </div>
+                    <button type="submit">Buscar</button>
+                </form>
+                
+            </div>
+            <script>
+                var fechaActual = new Date().toISOString().slice(0, 10);
+                
+                document.getElementById("fecha").value = fechaActual;
+            </script>
+            <p id="texto">{% block texto %}{% endblock texto %}</p>
+            {% endblock contenido %}
+        {% else %}
+            <h1>AVISO</h1>
+            <p id="aviso">Este sitio es de uso exclusivo para los docentes de la I.E. JEC José María Arguedas.</p>
+            <p id="aviso">Para acceder a los contenidos de este sitio deberá iniciar sesión.</p>
+        {% endif %}
+    </div>
+    
+    {% if request.user.is_authenticated %}
+    <script>
+        window.watsonAssistantChatOptions = {
+          integrationID: "c6c263f6-de1e-4f80-8c48-846a71594446", // The ID of this integration.
+          region: "au-syd", // The region your integration is hosted in.
+          serviceInstanceID: "a280aaa9-b947-4991-b8e3-b5439fa64bcc", // The ID of your service instance.
+          onLoad: async (instance) => { await instance.render(); }
+        };
+        setTimeout(function(){
+          const t=document.createElement('script');
+          t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+          document.head.appendChild(t);
+        });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% if messages %}
+        {% for m in messages %}
+            <script>
+                Swal.fire({
+                    "title": "Modificación correcta!",
+                    "text": "{{m}}",
+                    "icon": "success"
+                });
+            </script>
+        {% endfor %}
+    {% endif %}
+    {% block js %}
+    {% endblock %}
+    {% endif %}
+</body>
+</html>

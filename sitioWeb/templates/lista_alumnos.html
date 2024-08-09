@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block js %}
+<script>
+    function eliminarAlumno(id){
+        Swal.fire({
+            "title": "¿Está seguro?",
+            "text": "Está acción no se puede revertir.",
+            "icon": "warning",
+            "showCancelButton": true,
+            "confirmButtonText": "Borrar",
+            "cancelButtonText": "Cancelar",
+            "confirmButtonColor": "#27AA27",
+            "cancelButtonColor": "#A81818"
+        }).then(function(result) {
+            if(result.isConfirmed) {
+                window.location.href = "/eliminar_alumno/"+id
+            }
+        })
+    }
+</script>
+{% endblock %}
+
+{% load static %}
+{% block titulo %}
+Lista Alumnos | José María Arguedas
+{% endblock titulo %}
+
+{% block contenido %}
+<h1>LISTA ALUMNOS {{grado}} {{seccion}}</h1>
+<div class="lista-alumnos">
+    <table>
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Apellidos y Nombres</th>
+                <th colspan="2">Opciones</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for alumno in alumnos %}
+                <tr>
+                    <td>
+                        {{forloop.counter}}
+                    </td>
+                    <td class="nombre">
+                        {{ alumno.apellido_nombre }}
+                    </td>
+                    <td>
+                        <a href="/editar_alumno/{{ alumno.id }}" class="btn-editar"><button>EDITAR</button></a>
+                    </td>
+                    <td>
+                        <a href="#" onclick="eliminarAlumno({{ alumno.id }})" class="btn-eliminar"><button>ELIMINAR</button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<p id="aviso">{{mensaje}}</p>
+<a href=" /" class="btn"><button>Regresar</button></a>
+{% endblock contenido %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block titulo %}
+Inicio | José María Arguedas
+{% endblock titulo %}
+
+{% block contenido %}
+            <div class="busqueda">
+                <form action="/lista_alumnos/" method="post">
+                    {% csrf_token %}
+                    <h1>MOSTRAR ALUMNOS</h1>
+                    
+                    <div class="opciones">
+                        <label>GRADO: </label>
+                        <select name="grado" id="">
+                            <option value="PRIMERO">PRIMERO</option>
+                            <option value="SEGUNDO">SEGUNDO</option>
+                            <option value="TERCERO">TERCERO</option>
+                            <option value="CUARTO">CUARTO</option>
+                            <option value="QUINTO">QUINTO</option>
+                        </select>
+                        <label>SECCIÓN: </label>
+                        <select name="seccion" id="">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="G">G</option>
+                        </select>
+                    </div>
+                    <button type="submit">Buscar</button>
+                </form>
+                
+            </div>
+            <p id="texto"><br>
+            Seleccione el grado y sección a buscar para mostrar la lista de alumnos.</p>
+{% endblock contenido %}
+

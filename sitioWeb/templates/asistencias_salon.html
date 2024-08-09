@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo %}
+Lista Asistencias | José María Arguedas
+{% endblock titulo %}
+{% block contenido %}
+<h1>LISTA ASISTENCIAS {{fecha}}</h1>
+<h1>{{grado}} {{seccion}}</h1>
+<div class="lista-alumnos">
+    <table>
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Apellidos y Nombres</th>
+                <th>Ingreso</th>
+                <th>Opciones</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for asistencia in asistencias %}
+                <tr>
+                    <td>
+                        {{forloop.counter}}
+                    </td>
+                    <td class="nombre">
+                        {{ asistencia.alumno }}
+                    </td>
+                    <td>
+                        {{ asistencia.hora_registro }}
+                    </td>
+                    <td>
+                        <a href="/editar_asistencia/{{ asistencia.id }}" class="btn-editar"><button>EDITAR</button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<p id="aviso">{{mensaje}}</p>
+<a href="/asistencias/" class="btn"><button>Regresar</button></a>
+{% endblock contenido %}

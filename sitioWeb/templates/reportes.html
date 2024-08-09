@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block titulo %}
+Reportes de Asistencia | José María Arguedas
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="busqueda">
+    <h1>REPORTES POR SALÓN</h1>
+    <p id="texto">Ingrese el grado y sección del salón.</p>
+    <form action="/generar_reporte/" method="post">
+        {% csrf_token %}
+        <div class="opciones">
+            <label>FECHA BUSCAR: </label>
+            <input type="text" name="fecha" id="fecha" placeholder="AAAA-MM-DD" required>
+            <label>GRADO: </label>
+            <select name="grado" id="">
+                <option value="PRIMERO">PRIMERO</option>
+                <option value="SEGUNDO">SEGUNDO</option>
+                <option value="TERCERO">TERCERO</option>
+                <option value="CUARTO">CUARTO</option>
+                <option value="QUINTO">QUINTO</option>
+            </select>
+            <label>SECCIÓN: </label>
+            <select name="seccion" id="">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="G">G</option>
+            </select>
+            <label>HORA TARDE: </label>
+            <input type="text" name="hora_tarde" placeholder="HH:MM:SS" required>
+        </div>
+        <button type="submit">Generar Reporte</button><br>
+        <br>
+    </form>
+</div>
+<h1>RESUMEN DIARIO</h1>
+<p id="texto">Genera el cuadro de resumen del día.</p>
+<div class="editar">
+    <form action="/cuadro_resumen/" method="post">
+        {% csrf_token %}
+        <div class="opciones">
+            <label>FECHA BUSCAR: </label>
+            <input type="text" name="fecha" id="fecha" placeholder="AAAA-MM-DD" required>
+            <label>HORA TARDE: </label>
+            <input type="text" name="hora_tarde" placeholder="HH:MM:SS" required>
+            <button type="submit">Generar Resumen</button><br>
+        </div>
+     </form>
+</div>
+<script>
+    var fechaActual = new Date().toISOString().slice(0, 10);
+    
+    var elementosFecha = document.querySelectorAll("#fecha");
+
+    elementosFecha.forEach(function(elemento) {
+        elemento.value = fechaActual;
+    });
+</script>
+{% endblock contenido %}

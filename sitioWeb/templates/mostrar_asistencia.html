@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es-pe">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../static/imagenes/logo_colegio.jpg">
+    <link rel="stylesheet" href="../static/css/loader.css">
+    <title>Mostrar Asistencia | José María Arguedas</title>
+    <style>
+         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url("{% static '../static/imagenes/Fondo.jpeg' %}") no-repeat;
+    background-position: center;
+    background-size: cover;
+
+}
+
+.wrapper {
+    width: auto;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+.wrapper .content-datos{
+    display: flex;
+    flex-direction: row;
+}
+.wrapper .content-datos p{
+    font-size: 22px;
+    color: black;
+    font-weight: 600;
+    margin-top: 2px;
+    margin-right: 10px;
+}
+
+.wrapper .content-datos h2{
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.wrapper .cuadro-asistencia .btn button{
+    margin-top: 3%;
+    font-weight: 500;
+    color: #fff;
+    padding: 9px 20px;
+    font-size: 22px;
+    background: #1a235f;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.wrapper .cuadro-asistencia .btn button:hover{
+    background-color: #1a235f;
+    color: rgb(143, 11, 11);
+    transform: scale(1.1);
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+
+    <div class="wrapper">
+        <h1 style="color: black;">{{ alumno.0.apellido_nombre }}</h1>
+        <div class="content-datos">
+            <p>DNI:</p>
+            <h2>{{ alumno.0.dni }}</h2>
+            <p>GRADO:</p>
+            <h2>{{ alumno.0.grado }}</h2>
+            <p>SECCIÓN:</p>
+            <h2>{{ alumno.0.seccion }}</h2>
+        </div>
+        
+        <hr>
+        <hr>
+        <div class="cuadro-asistencia">
+            {% for asistencia in asistencias %}
+                <h2>{{ asistencia.fecha_registro }}</h2>
+                {% if asistencia.hora_registro|time:"H:i:s" == "00:00:00" %}
+                    <h2 style="color: red;">FALTÓ</h2>
+                {% else %}
+                    <h2 style="color: darkgreen;" >Ingresó a las {{ asistencia.hora_registro|time:"H:i:s" }}</h2>
+                {% endif %}
+                <hr>
+            {% endfor %}
+            <a href="/asistencia_alumno/" class="btn" style="text-decoration: none;"><button>Volver</button></a>
+        </div>
+        
+    </div>
+
+    
+
+    <script src="../static/js/loader.js"></script>
+</body>
+</html>

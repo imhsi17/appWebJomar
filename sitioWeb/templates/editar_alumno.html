@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block titulo %}
+Editar Alumno | José María Arguedas
+{% endblock titulo %}
+
+{% block contenido %}
+<h1>EDITAR ALUMNO</h1>
+<div class="editar">
+    <form action="/alumno_editado/" method="post">
+        {% csrf_token %}
+        <div class="opciones">
+            <input type="hidden" name="id" value="{{ alumno.id }}">
+            <label>Apellidos y Nombres: </label>
+            <input type="text" id="nombre" name="apellido_nombre" autocomplete="off" value="{{alumno.apellido_nombre}}" required >
+            <label>Sección</label>
+            <input type="text" name="seccion" autocomplete="off" value="{{ alumno.seccion }}" required >
+            <button type="submit">Guardar</button>
+        </div>
+    </form>
+</div>
+{% endblock contenido %}

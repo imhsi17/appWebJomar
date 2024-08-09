@@ -1,0 +1,177 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    min-height: 100vh;
+}
+
+img{
+    display: flex;
+    height: 80px;
+    margin-right: 10px;
+}
+
+span{
+    color: rgb(143, 11, 11);
+}
+
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: transparent;
+    backdrop-filter: blur(10px);
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, .2);
+    width: 100%;
+    padding: 40px 100px;
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo{
+    font-size: 48px;
+    text-decoration: none;
+    color: #1a235f;
+    font-weight: 700;
+}
+
+.navbar{
+    margin-left: 29%;
+}
+
+.navbar a{
+    position: relative;
+    font-size: 24px;
+    color: #1a235f;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.navbar a:hover,
+.header .overlay .overlay-content a:hover{
+    color: rgb(143, 11, 11);
+}
+
+.navbar a::before,
+.header .overlay .overlay-content a::before{
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    transition: .3s;
+}
+
+.menu{
+    display: none;
+}
+
+.navbar a:hover::before,
+.header .overlay .overlay-content a:hover::before{
+    width: 100%;
+    background: rgb(143, 11, 11);
+}
+
+.navbar .btn button,
+.header .menu button,
+.header .overlay .overlay-content .btn button,
+.contenido .busqueda button,
+.contenido .btn button,
+.contenido .editar .opciones button{
+    font-weight: 500;
+    color: #fff;
+    padding: 9px 20px;
+    margin-bottom: 10px;
+    font-size: 22px;
+    background: #1a235f;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.navbar .btn button:hover,
+.header .menu button:hover,
+.header .overlay .overlay-content .btn button:hover,
+.contenido .busqueda button:hover,
+.contenido .btn button:hover,
+.contenido .editar .opciones button:hover{
+    background-color: #1a235f;
+    color: rgb(143, 11, 11);
+    transform: scale(1.1);
+}
+
+@media screen and (max-width:1283px){
+    .navbar .btn{
+        display: none;
+    }
+    .navbar a{
+        display: none;
+    }
+    .menu{
+        display: inherit;
+    }
+}
+
+
+/*Barra lateral*/
+
+.header a{
+    text-decoration: none;
+}
+
+.header .overlay{
+    height: 100%;
+    width: 0;
+    position: fixed;
+    background-color: rgba(65, 133, 235, 0.95);
+    z-index: 1;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    transition: all 0.3s ease 0s;
+}
+
+.header .overlay .overlay-content{
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.header .overlay a{
+    padding: 15px;
+    font-size: 40px;
+    display: block;
+    transition: all 0.3 ease 0s;
+    font-weight: 500;
+    color: #1a235f;
+}
+
+.header .overlay .close{
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 50px;
+}
+
+@media screen and (max-height:450px) {
+    .header .overlay a{
+        font-size: 20px;
+    }
+
+    .header .overlay .close{
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}

@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    margin-top: 40px;
+    font-size: 20px;
+    color: #1a235f;
+}
+
+header .titulo{
+    display: flex;
+    flex-direction: column;
+}
+
+header .titulo h1{
+    margin: 10px 15px;
+}
+
+header img{
+    width: 150px;
+    height: 150px;
+}
+
+.lista_asistencias{
+    height: 100%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lista_asistencias table{
+    border-collapse: collapse;
+    width: 50%;
+    border: 1px solid #ddd;
+
+}
+
+.lista_asistencias table .nombre{
+    text-align: left;
+}
+th, td {
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #c9d0ff;
+}
+th {
+    background-color: #aab3f1;
+}
+
+

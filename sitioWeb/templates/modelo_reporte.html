@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'imagenes/favicon.ico' %}">
+    <title>Prevista del Reporte</title>
+    <style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', 'Arial', sans-serif;
+}
+
+header{
+    display: block;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 20px;
+    color: #1a235f;
+}
+
+header .titulo{
+    display: block;
+    margin-top: 10px;
+}
+
+header h1{
+    margin: 10px 5px;
+}
+
+.lista_asistencias{
+    margin-top: 50px;
+    display: block;
+    width: 100%;
+}
+
+.lista_asistencias table{
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    margin: 0 auto;
+}
+
+.lista_asistencias table .nombre{
+    text-align: left;
+}
+th, td {
+    text-align: center;
+    padding: 3px;
+    border: 1px solid #c9d0ff;
+}
+th {
+    background-color: #aab3f1;
+}
+.lista_asistencias .numero{
+    width: 75px;
+}
+.lista_asistencias .col-nombre,
+.lista_asistencias .nombre{
+    width: 420px;
+}
+.encabezado td{
+    border: 1px solid #fff;
+}
+.encabezado .valor{
+    text-align: left;
+}
+.encabezado .fecha{
+    width: 100px;
+}
+.lista_asistencias .numero,
+.lista_asistencias .nombre,
+.lista_asistencias .col-nombre,
+.lista_asistencias .hora,
+.lista_asistencias .estado{
+    font-size: 14px;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <img class="logo" src="sitioWeb\static\imagenes\baner.jpg">
+        <br>
+        <h1>REPORTE DE ASISTENCIAS</h1>
+        <table class="encabezado">
+            <tbody>
+                <tr>
+                    <td class="fecha">FECHA: </td>
+                    <td class="fecha-valor" colspan="3">{{ fecha }}</td>
+                </tr>
+                <tr>
+                    <td>GRADO:</td>
+                    <td class="valor">{{ grado }}</td>
+                    <td>SECCIÓN:</td>
+                    <td class="valor">{{ seccion }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </header>
+    <div class="lista_asistencias">
+        <table>
+            <thead>
+                <tr>
+                    <th class="numero">N°</th>
+                    <th class="col-nombre">Apellidos y Nombres</th>
+                    <th class="hora">Hora Llegada</th>
+                    <th class="estado">Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for alumno, hora in asistencias.items %}
+                    <tr>
+                        <td class="numero">{{forloop.counter}}</td>
+                        <td class="nombre">{{alumno}}</td>
+                        <td class="hora">{{ hora }}</td>
+                        <td class="estado">
+                            {% if hora|time:"H:i:s" == "00:00:00" %}
+                                FALTÓ
+                            {% else %}
+                                {% if tarde >= hora|time:"H:i:s" %}
+                                    ASISTIÓ
+                                {% else %}
+                                    TARDE
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

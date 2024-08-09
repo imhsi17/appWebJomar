@@ -1,0 +1,30 @@
+{% extends 'base_login.html' %}
+
+{% block titulo %}
+Buscar Asistencia | José María Arguedas
+{% endblock titulo %}
+
+{% block login %}
+<form action="" method="post">
+    {% csrf_token %}
+    <h1>Asistencia Alumnos</h1>
+    <div class="input-box">
+        <input type="text" name="dni_alumno" placeholder="DNI Alumno" maxlength="8" autocomplete="off" required>
+        <i class='bx bx-user'></i>
+    </div>
+    {% for mensaje in mensajes %}
+        <ul class="messages">
+            <li style="color: red;">{{ mensaje }}</li>
+        </ul>
+    {% endfor %}
+
+    <button type="submit" class="btn">
+        Buscar
+    </button>
+    <div class="usuario-link">
+        <p>¿Es usted un docente?
+            <a href="/inicio_sesion/">Ingrese Aquí</a>
+        </p>
+    </div>
+</form>
+{% endblock login %}

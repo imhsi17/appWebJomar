@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block titulo %}
+Editar Asistencia | José María Arguedas
+{% endblock titulo %}
+
+{% block contenido %}
+<h1>EDITAR ASISTENCIA</h1>
+<div class="editar">
+    <form action="/asistencia_editada/" method="post">
+        {% csrf_token %}
+        <div class="opciones">
+            <input type="hidden" name="id" value="{{ asistencia.id }}">
+            <label>Alumno: </label>
+            <input type="text" id="nombre" name="alumno" autocomplete="off" readonly value="{{asistencia.alumno}}" required >
+            <label>Hora de Registro:</label>
+            <input type="text" name="hora" autocomplete="off" value="{{ asistencia.hora_registro }}" required >
+            <button type="submit">Guardar</button>
+        </div>
+    </form>
+</div>
+{% endblock contenido %}

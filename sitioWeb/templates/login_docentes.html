@@ -1,0 +1,38 @@
+{% extends 'base_login.html' %}
+
+{% block titulo %}
+Inicio Sesion | José María Arguedas
+{% endblock titulo %}
+
+{% block login %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <h1 style="color: #1a235f;">Inicio Sesión Docentes</h1>
+    <div class="input-box">
+        <input type="text" name="username" placeholder="Usuario" required>
+        <i class='bx bx-user'></i>
+    </div>
+    <div class="input-box">
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <i class='bx bx-lock-alt' ></i>
+    </div>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li style="color: red;">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <button type="submit" class="btn">
+        Ingresar
+    </button>
+    <div class="usuario-link">
+        <p>¿Es usted un alumno?
+            <a href="/asistencia_alumno/">Ingrese Aquí</a>
+        </p>
+    </div>
+</form>
+
+{% endblock login %}
+

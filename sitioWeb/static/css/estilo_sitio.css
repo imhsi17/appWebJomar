@@ -1,0 +1,140 @@
+h1{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+    margin-top: 45px;
+    font-size: 44px;
+    text-decoration: underline;
+    color: #1a235f;
+}
+.espacio{
+    margin-top: 190px;
+}
+.contenido #aviso{
+    margin-top: 50px;
+    justify-content: center;
+    text-align: center;
+    color: darkred;
+    font-size: 36px;
+    font-style: italic;
+}
+
+.contenido #texto{
+    display: flex;
+    justify-content: center;
+    color: #1a235f;
+    font-size: 30px;
+    font-style: oblique;
+}
+
+.contenido .busqueda .opciones label,
+.contenido .editar .opciones label{
+    color: #1a235f;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.contenido .busqueda .opciones,
+.buscar-nota,
+.contenido .editar .opciones{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.busqueda select,
+.contenido .editar .opciones input,
+.contenido .busqueda .opciones input{
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #333;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.contenido .editar .opciones #nombre{
+    width: 450px;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #333;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.busqueda .opciones{
+    padding: 10px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;;
+}
+
+.busqueda .opciones:checked{
+    background-color: #1a235f;
+    color: #fff;
+}
+
+.lista-alumnos{
+    height: 100%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lista-alumnos table{
+    border-collapse: collapse;
+    width: 50%;
+    border: 1px solid #ddd;
+
+}
+.lista-alumnos table .nombre{
+    text-align: left;
+}
+th, td {
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #c9d0ff;
+}
+th {
+    background-color: #aab3f1;
+}
+
+.contenido .busqueda button{
+    margin-left: 45%;
+}
+
+.contenido .btn button{
+    margin-left: 25%;
+}
+
+.contenido .lista-alumnos .btn-editar button{
+    padding: 5px 10px;
+    font-size: 12px;
+    border: 2px solid rgb(39, 170, 39);
+    background-color: #fff;
+    border-radius: 7px;
+}
+.contenido .lista-alumnos .btn-eliminar button{
+    padding: 5px 10px;
+    font-size: 12px;
+    border: 2px solid rgb(168, 24, 24);
+    background-color: #fff;
+    border-radius: 7px;
+}
+.contenido .lista-alumnos .btn-editar button:hover{
+    background-color: rgb(39, 170, 39);
+    color: #fff;
+    transform: scale(1.05);
+    transition: 0.2s;
+}
+.contenido .lista-alumnos .btn-eliminar button:hover{
+    background-color: rgb(168, 24, 24);
+    color: #fff;
+    transform: scale(1.05);
+    transition: 0.3s;
+}

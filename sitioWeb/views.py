@@ -128,7 +128,7 @@ def reportes(request):
 #Genera el reporte de asistencias del día por salón
 def generar_reporte(request):
     
-    locale.setlocale(locale.LC_TIME, 'es_PE.UTF-8')
+    #locale.setlocale(locale.LC_TIME, 'es_PE.UTF-8')
     fecha = datetime.now().strftime('%Y-%m-%d')
     fecha = request.POST.get('fecha')
     fecha_date = datetime.strptime(fecha, '%Y-%m-%d').date()
@@ -155,7 +155,7 @@ def generar_reporte(request):
 #Genera un resumen del día en base a las asistencias registradas
 def resumen_reporte(request):
     
-    locale.setlocale(locale.LC_TIME, 'es_PE.UTF-8')
+    #locale.setlocale(locale.LC_TIME, 'es_PE.UTF-8')
     fecha = datetime.now().strftime('%Y-%m-%d')
     fecha = request.POST.get('fecha')
     fecha_date = datetime.strptime(fecha, '%Y-%m-%d').date()
